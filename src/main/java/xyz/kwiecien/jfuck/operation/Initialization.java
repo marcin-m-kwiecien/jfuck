@@ -8,7 +8,7 @@ import static java.lang.constant.ConstantDescs.CD_void;
 import static java.lang.constant.ConstantDescs.INIT_NAME;
 import static xyz.kwiecien.jfuck.operation.BytecodeConstants.*;
 
-public class Initialization implements Operation {
+public record Initialization() implements Operation {
     @Override
     public void appendBytecode(CodeBuilder cb) {
         cb.iconst_0().istore(PTR_VAR_INDEX) // Pointer init

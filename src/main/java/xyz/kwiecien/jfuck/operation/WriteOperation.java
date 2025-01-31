@@ -8,7 +8,7 @@ import static java.lang.constant.ConstantDescs.*;
 import static xyz.kwiecien.jfuck.operation.BytecodeConstants.DATA_VAR_INDEX;
 import static xyz.kwiecien.jfuck.operation.BytecodeConstants.PTR_VAR_INDEX;
 
-public class WriteOperation implements Operation {
+public record WriteOperation() implements Operation {
     @Override
     public void appendBytecode(CodeBuilder cb) {
         cb.getstatic(BytecodeConstants.SYSTEM_DESC, "out", BytecodeConstants.PRINT_STREAM_DESC)

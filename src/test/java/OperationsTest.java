@@ -17,11 +17,12 @@ import static xyz.kwiecien.jfuck.operation.BytecodeConstants.DATA_SIZE_CONSTANT_
 
 public class OperationsTest {
     @Test
-    void testGen() throws IOException {
+    void testAdd() throws IOException {
         Consumer<CodeBuilder> initCode = cb -> cb
                 .aload(0)
                 .invokespecial(CD_Object, INIT_NAME, MTD_void).return_();
 
+        //Full example of add - adding two numbers from stdin
         Consumer<CodeBuilder> addCode = cb -> {
             new Initialization().appendBytecode(cb);
             new ReadOperation().appendBytecode(cb);

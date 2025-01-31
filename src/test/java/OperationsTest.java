@@ -23,25 +23,25 @@ public class OperationsTest {
                 .invokespecial(CD_Object, INIT_NAME, MTD_void).return_();
 
         Consumer<CodeBuilder> addCode = cb -> {
-            new Initialization().appendBytecode().accept(cb);
-            new ReadOperation().appendBytecode().accept(cb);
-            new ModifyPointerOperation(1).appendBytecode().accept(cb);
-            new ModifyStackValueOperation((byte) 6).appendBytecode().accept(cb);
+            new Initialization().appendBytecode(cb);
+            new ReadOperation().appendBytecode(cb);
+            new ModifyPointerOperation(1).appendBytecode(cb);
+            new ModifyStackValueOperation((byte) 6).appendBytecode(cb);
             new Loop(List.of(
                     new ModifyPointerOperation(-1),
                     new ModifyStackValueOperation((byte) -8),
                     new ModifyPointerOperation(1),
                     new ModifyStackValueOperation((byte) -1)
-            )).appendBytecode().accept(cb);
-            new ReadOperation().appendBytecode().accept(cb);
+            )).appendBytecode(cb);
+            new ReadOperation().appendBytecode(cb);
             new Loop(List.of(
                     new ModifyPointerOperation(-1),
                     new ModifyStackValueOperation((byte) 1),
                     new ModifyPointerOperation(1),
                     new ModifyStackValueOperation((byte) -1)
-            )).appendBytecode().accept(cb);
-            new ModifyPointerOperation(-1).appendBytecode().accept(cb);
-            new WriteOperation().appendBytecode().accept(cb);
+            )).appendBytecode(cb);
+            new ModifyPointerOperation(-1).appendBytecode(cb);
+            new WriteOperation().appendBytecode(cb);
             cb.return_();
         };
 

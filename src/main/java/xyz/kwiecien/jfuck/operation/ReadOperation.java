@@ -2,15 +2,14 @@ package xyz.kwiecien.jfuck.operation;
 
 import java.lang.classfile.CodeBuilder;
 import java.lang.constant.MethodTypeDesc;
-import java.util.function.Consumer;
 
 import static java.lang.constant.ConstantDescs.*;
 import static xyz.kwiecien.jfuck.operation.BytecodeConstants.*;
 
 public class ReadOperation implements Operation {
     @Override
-    public Consumer<CodeBuilder> appendBytecode() {
-        return c -> c.aload(DATA_VAR_INDEX).iload(PTR_VAR_INDEX)
+    public void appendBytecode(CodeBuilder cb) {
+        cb.aload(DATA_VAR_INDEX).iload(PTR_VAR_INDEX)
                 .aload(SCANNER_VAR_INDEX)
                 .invokevirtual(SCANNER_DESC, "next", MethodTypeDesc.of(CD_String))
                 .iconst_0()

@@ -3,7 +3,6 @@ package xyz.kwiecien.jfuck.operation;
 import java.lang.classfile.CodeBuilder;
 import java.lang.classfile.TypeKind;
 import java.lang.constant.MethodTypeDesc;
-import java.util.function.Consumer;
 
 import static java.lang.constant.ConstantDescs.*;
 import static xyz.kwiecien.jfuck.operation.BytecodeConstants.DATA_VAR_INDEX;
@@ -11,8 +10,8 @@ import static xyz.kwiecien.jfuck.operation.BytecodeConstants.PTR_VAR_INDEX;
 
 public class WriteOperation implements Operation {
     @Override
-    public Consumer<CodeBuilder> appendBytecode() {
-        return c -> c.getstatic(BytecodeConstants.SYSTEM_DESC, "out", BytecodeConstants.PRINT_STREAM_DESC)
+    public void appendBytecode(CodeBuilder cb) {
+        cb.getstatic(BytecodeConstants.SYSTEM_DESC, "out", BytecodeConstants.PRINT_STREAM_DESC)
                 .new_(BytecodeConstants.STRING_CLASS_DESC).dup() // dup, because we will be initializing it and then using as an argument for print
                 .iconst_1().newarray(TypeKind.BYTE).dup() // dup, because we will be filling it with data and then passing to String.<init>
                 .iconst_0() // index of byte array to set

@@ -3,7 +3,6 @@ package xyz.kwiecien.jfuck.operation;
 import java.lang.constant.ClassDesc;
 
 public interface BytecodeConstants {
-    String DATA_SIZE_CONSTANT_NAME = "DATA_SIZE";
     int DATA_SIZE = 30000;
 
     int PTR_VAR_INDEX = 1;

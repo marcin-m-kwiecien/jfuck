@@ -14,7 +14,7 @@ class OperationExtractorTest {
         var operations = new OperationExtractor().extract(code);
         assertEquals(List.of(
                 new Initialization(),
-                new ModifyStackValueOperation((byte) 5)
+                new ModifyValueOperation((byte) 5)
         ), operations);
     }
 
@@ -24,7 +24,7 @@ class OperationExtractorTest {
         var operations = new OperationExtractor().extract(code);
         assertEquals(List.of(
                 new Initialization(),
-                new ModifyStackValueOperation((byte) -5)
+                new ModifyValueOperation((byte) -5)
         ), operations);
     }
 
@@ -34,7 +34,7 @@ class OperationExtractorTest {
         var operations = new OperationExtractor().extract(code);
         assertEquals(List.of(
                 new Initialization(),
-                new ModifyStackValueOperation((byte) 2)
+                new ModifyValueOperation((byte) 2)
         ), operations);
     }
 
@@ -75,9 +75,9 @@ class OperationExtractorTest {
         assertEquals(List.of(
                 new Initialization(),
                 new ReadOperation(),
-                new ModifyStackValueOperation((byte) 1),
+                new ModifyValueOperation((byte) 1),
                 new ModifyPointerOperation(1),
-                new ModifyStackValueOperation((byte) -1),
+                new ModifyValueOperation((byte) -1),
                 new ModifyPointerOperation(-1),
                 new WriteOperation()
         ), operations);

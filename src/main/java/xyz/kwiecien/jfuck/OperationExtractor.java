@@ -18,13 +18,13 @@ public class OperationExtractor {
                 case '+':
                 case '-':
                     byte valueModification = (byte) (c == '+' ? 1 : -1);
-                    if (currentOperation instanceof ModifyStackValueOperation(byte value)) {
-                        currentOperation = new ModifyStackValueOperation((byte) (value + valueModification));
+                    if (currentOperation instanceof ModifyValueOperation(byte value)) {
+                        currentOperation = new ModifyValueOperation((byte) (value + valueModification));
                     } else {
                         if (currentOperation != null) {
                             operationLists.peek().add(currentOperation);
                         }
-                        currentOperation = new ModifyStackValueOperation(valueModification);
+                        currentOperation = new ModifyValueOperation(valueModification);
                     }
                     break;
                 case '<':

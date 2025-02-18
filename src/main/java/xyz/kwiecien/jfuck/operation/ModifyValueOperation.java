@@ -5,7 +5,7 @@ import java.lang.classfile.CodeBuilder;
 import static xyz.kwiecien.jfuck.operation.BytecodeConstants.DATA_VAR_INDEX;
 import static xyz.kwiecien.jfuck.operation.BytecodeConstants.PTR_VAR_INDEX;
 
-public record ModifyStackValueOperation(byte value) implements Operation {
+public record ModifyValueOperation(byte value) implements Operation {
     @Override
     public void appendBytecode(CodeBuilder cb) {
         cb.aload(DATA_VAR_INDEX).iload(PTR_VAR_INDEX).dup2() // dup2, because will be used to read value and then store incremented

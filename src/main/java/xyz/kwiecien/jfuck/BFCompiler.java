@@ -15,16 +15,16 @@ import static java.lang.constant.ConstantDescs.*;
 
 public class BFCompiler {
     public static void main(String[] args) throws IOException {
-        if (args.length < 1) {
-            System.err.println("Usage: GenMain <filename>");
+        if (args.length < 2) {
+            System.err.println("Usage: BFCompiler <input filename> <output filename>");
             System.exit(1);
         }
-        var path = Paths.get(args[0]);
-        if (!path.toFile().exists()) {
+        var inputPath = Paths.get(args[0]);
+        if (!inputPath.toFile().exists()) {
             System.err.println("Unable to find file: " + args[0]);
             System.exit(1);
         }
-        var code = Files.readString(path);
+        var code = Files.readString(inputPath);
         var operations = new OperationExtractor().extract(code);
 
         Consumer<CodeBuilder> mainCode = cb -> {
@@ -42,6 +42,7 @@ public class BFCompiler {
                             ACC_PUBLIC + ACC_STATIC,
                             mb -> mb.withCode(mainCode));
         });
-        Files.write(Path.of("/tmp/GenClass.class"), bytes);
+        var outputPath = Paths.get(args[1]);
+        Files.write(outputPath, bytes);
     }
 }

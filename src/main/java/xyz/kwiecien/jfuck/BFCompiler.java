@@ -34,7 +34,9 @@ public class BFCompiler {
             cb.return_();
         };
 
-        var bytes = ClassFile.of().build(ClassDesc.of("GenClass"), clb -> {
+        var outputPath = Paths.get(args[1]);
+        var className = outputPath.getFileName().toString().replace(".class", "");
+        var bytes = ClassFile.of().build(ClassDesc.of(className), clb -> {
             clb.withFlags(ACC_PUBLIC);
             clb.withMethod(
                             "main",
@@ -42,7 +44,6 @@ public class BFCompiler {
                             ACC_PUBLIC + ACC_STATIC,
                             mb -> mb.withCode(mainCode));
         });
-        var outputPath = Paths.get(args[1]);
         Files.write(outputPath, bytes);
     }
 }
